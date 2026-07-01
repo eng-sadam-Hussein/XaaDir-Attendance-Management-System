@@ -21,13 +21,17 @@ public class AuthRepository
         connection.Open();
         using var reader = command.ExecuteReader();
         if (!reader.Read()) return null;
+
+        var role = reader["Role"].ToString() ?? "";
         return new LoginResponse
         {
             UserId = Convert.ToInt32(reader["UserId"]),
             FullName = reader["FullName"].ToString() ?? "",
             Username = reader["Username"].ToString() ?? "",
             Email = reader["Email"].ToString() ?? "",
-            Role = reader["Role"].ToString() ?? ""
+            Role = role,
+            HasAdminAccess = RoleHelper.HasAdminAccess(role),
+            HasTeacherAccess = RoleHelper.HasTeacherAccess(role)
         };
     }
 }

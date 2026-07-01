@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:3000", "https://localhost:5173", "https://localhost:3000")
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -30,7 +30,10 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseHttpsRedirection();
+
+// Local development: keep HTTP enabled to avoid browser certificate errors.
+// app.UseHttpsRedirection();
+
 app.UseCors("AllowReactApp");
 app.UseAuthorization();
 app.MapControllers();

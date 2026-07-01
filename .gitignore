@@ -17,3 +17,19 @@ dist/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Frontend
+node_modules/
+dist/
+.env
+
+# Backend
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# OS / Editor
+.DS_Store
+.vscode/

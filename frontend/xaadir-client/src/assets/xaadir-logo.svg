@@ -1,0 +1,13 @@
+<svg width="520" height="150" viewBox="0 0 520 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="520" height="150" rx="28" fill="white"/>
+  <rect x="23" y="35" width="28" height="82" rx="8" fill="#0B63CE"/>
+  <rect x="61" y="35" width="36" height="36" rx="8" fill="#14B84A"/>
+  <rect x="106" y="35" width="36" height="36" rx="8" fill="#F57C00"/>
+  <rect x="61" y="82" width="36" height="35" rx="8" fill="#2186EA"/>
+  <rect x="106" y="82" width="36" height="35" rx="8" fill="#14B84A"/>
+  <path d="M114 99L123 108L139 90" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="178" y="95" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2.5">
+    <tspan fill="#0B63CE">Xaa</tspan><tspan fill="#14B84A">Dir</tspan>
+  </text>
+  <text x="390" y="95" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.5" fill="#F57C00">App</text>
+</svg>

@@ -44,7 +44,7 @@ public class UsersController : ControllerBase
         if (string.IsNullOrWhiteSpace(user.Username)) return "Username is required.";
         if (string.IsNullOrWhiteSpace(user.Email)) return "Email is required.";
         if (string.IsNullOrWhiteSpace(user.Password)) return "Password is required.";
-        if (user.Role != "Admin" && user.Role != "Teacher") return "Role must be Admin or Teacher.";
+        if (!RoleHelper.IsValidRole(user.Role)) return "Role must be Admin, Teacher, or TeacherAdmin.";
         return null;
     }
 }

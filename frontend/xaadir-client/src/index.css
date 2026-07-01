@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  body {
+    @apply min-h-screen bg-slate-50 text-slate-900;
+    background:
+      radial-gradient(circle at top left, rgba(11, 99, 206, 0.12), transparent 32%),
+      radial-gradient(circle at top right, rgba(20, 184, 74, 0.10), transparent 34%),
+      linear-gradient(180deg, #ffffff, #f5f8fc);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-extrabold transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-xaadirBlue to-xaadirGreen text-white shadow-glow;
+  }
+
+  .btn-orange {
+    @apply bg-xaadirOrange text-white shadow-lg shadow-orange-200;
+  }
+
+  .btn-ghost {
+    @apply bg-slate-100 text-slate-700 hover:bg-slate-200;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white shadow-lg shadow-red-200;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-xaadirBlue focus:ring-4 focus:ring-blue-100;
+  }
+
+  .label {
+    @apply grid gap-2 text-sm font-bold text-slate-700;
+  }
+
+  .card {
+    @apply rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-soft backdrop-blur;
+  }
+
+  .page-title {
+    @apply text-3xl font-black tracking-tight text-slate-950 md:text-5xl;
+  }
+
+  .eyebrow {
+    @apply text-xs font-black uppercase tracking-[0.2em] text-xaadirOrange;
+  }
+
+  .muted {
+    @apply text-sm leading-7 text-slate-500;
+  }
+
+  .table-wrap {
+    @apply w-full overflow-x-auto rounded-3xl border border-slate-200 bg-white;
+  }
+
+  .data-table {
+    @apply min-w-[850px] w-full border-collapse;
+  }
+
+  .data-table th {
+    @apply border-b border-slate-200 bg-slate-50 px-4 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-500;
+  }
+
+  .data-table td {
+    @apply border-b border-slate-100 px-4 py-4 text-sm text-slate-700;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-700 transition hover:-translate-y-0.5 hover:shadow-lg;
+  }
+}

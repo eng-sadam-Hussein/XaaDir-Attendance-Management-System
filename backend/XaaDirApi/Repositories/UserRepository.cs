@@ -45,6 +45,8 @@ public class UserRepository
 
     public int Create(User user)
     {
+        ValidateRoleRules(null, user.Role);
+
         using var connection = _connectionFactory.CreateConnection();
         using var command = new SqlCommand(@"INSERT INTO Users (FullName, Username, Email, Password, Role, IsActive)
             OUTPUT INSERTED.UserId VALUES (@FullName,@Username,@Email,@Password,@Role,@IsActive);", connection);
@@ -55,6 +57,11 @@ public class UserRepository
 
     public bool Update(int id, User user)
     {
+        var existing = GetById(id);
+        if (existing == null) return false;
+
+        ValidateRoleRules(existing.Role, user.Role);
+
         using var connection = _connectionFactory.CreateConnection();
         using var command = new SqlCommand(@"UPDATE Users SET FullName=@FullName, Username=@Username, Email=@Email, Password=@Password, Role=@Role, IsActive=@IsActive WHERE UserId=@UserId;", connection);
         command.Parameters.AddWithValue("@UserId", id);
@@ -70,6 +77,20 @@ public class UserRepository
         command.Parameters.AddWithValue("@UserId", id);
         connection.Open();
         return command.ExecuteNonQuery() > 0;
+    }
+
+    private static void ValidateRoleRules(string? oldRole, string newRole)
+    {
+        if (!RoleHelper.IsValidRole(newRole))
+            throw new InvalidOperationException("Role must be Admin, Teacher, or TeacherAdmin.");
+
+        // Pure Admin accounts cannot be changed into Teacher/TeacherAdmin.
+        if (oldRole == RoleHelper.Admin && newRole != RoleHelper.Admin)
+            throw new InvalidOperationException("Admin account cannot take another role. Admin must remain Admin.");
+
+        // Teacher can be promoted to TeacherAdmin, but not converted into pure Admin.
+        if ((oldRole == RoleHelper.Teacher || oldRole == RoleHelper.TeacherAdmin) && newRole == RoleHelper.Admin)
+            throw new InvalidOperationException("Teacher cannot be converted into pure Admin. Use TeacherAdmin to give admin access to a teacher.");
     }
 
     private static void AddParams(SqlCommand command, User user)
